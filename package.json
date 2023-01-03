@@ -32,6 +32,11 @@
           "minimum": 80,
           "maximum": 180,
           "markdownDescription": "This is a hard limit, exceeding which significantly affects the readability of the code.\n\nExceeding this limit results in the display of an error.\n\n*This limit should not be much higher than the `#too-long-line-limit.softLimit#`.*"
+        },
+        "too-long-line-limit.rulersEnabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Used to determine whether rulers should be visible.\n\nTheir position depends on the settings `#too-long-line-limit.softLimit#` and `#too-long-line-limit.hardLimit#`."
         }
       }
     },

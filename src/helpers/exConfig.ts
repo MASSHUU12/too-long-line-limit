@@ -25,4 +25,9 @@ export const exConfig = {
 
     return parseInt(config === undefined ? "120" : (config as string));
   },
+  rulersEnabled: (): boolean => {
+    return vscode.workspace
+      .getConfiguration(exName)
+      .get("rulersEnabled") as boolean;
+  },
 };

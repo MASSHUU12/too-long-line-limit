@@ -10,10 +10,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Display rulers
 - Rulers are tied to soft and hard line length limit
+- Setting to toggle rulers
 
 ### Changed
 
 - Improved way of downloading settings from VS Code
+
+## Fixed
+
+- Rulers did not disappear after deactivating the extension
 
 ## 1.0.0 - 2023-01-03
 

@@ -44,5 +44,5 @@ export function activate(context: vscode.ExtensionContext) {
 // This method is called when extension is deactivated
 export function deactivate() {
   // Remove rulers
-  vscode.workspace.getConfiguration("editor").update("rulers", undefined, true);
+  vscode.workspace.getConfiguration("editor").update("rulers", [], true);
 }
