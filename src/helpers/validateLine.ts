@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { errLongLine, warningLongLine } from "../constants/messages";
+import { exConfig } from "./exConfig";
 
 /**
  * Checks the length of the specified line,
@@ -15,14 +16,14 @@ export const validateLine = (
   let severity = -1;
 
   // If the line length is within an acceptable range, return
-  if (len < 80) {
+  if (len < exConfig.softLimit()) {
     return undefined;
   }
 
-  if (len > 80 && len <= 120) {
+  if (len > exConfig.softLimit() && len <= exConfig.hardLimit()) {
     // Soft limit
     severity = 1;
-  } else if (len > 120) {
+  } else if (len > exConfig.hardLimit()) {
     // Hard limit
     severity = 0;
   } else {

@@ -2,8 +2,8 @@
   "name": "too-long-line-limit",
   "displayName": "Too Long - line limit",
   "description": "",
-  "version": "0.0.1",
-  "publisher": "MASSHUU",
+  "version": "1.0.0",
+  "publisher": "MASSHUU12",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -15,7 +15,26 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": []
+    "commands": [],
+    "configuration": {
+      "title": "Too Long - line limit",
+      "properties": {
+        "too-long-line-limit.softLimit": {
+          "type": "number",
+          "default": 80,
+          "minimum": 40,
+          "maximum": 120,
+          "markdownDescription": "This is a soft limit, which is acceptable to exceed, but negatively affects the readability of the code.\n\nExceeding it results in the display of a warning.\n\n*Changing this value is not recommended, 80 characters are completely sufficient in most cases.*"
+        },
+        "too-long-line-limit.hardLimit": {
+          "type": "number",
+          "default": 120,
+          "minimum": 80,
+          "maximum": 180,
+          "markdownDescription": "This is a hard limit, exceeding which significantly affects the readability of the code.\n\nExceeding this limit results in the display of an error.\n\n*This limit should not be much higher than the `#too-long-line-limit.softLimit#`.*"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
