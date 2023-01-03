@@ -21,4 +21,4 @@ Release notes can be found [here](https://github.com/MASSHUU12/too-long-line-lim
 
 ## License
 
-Licensed under the [MIT](https://github.com/MASSHUU12/too-long-line-limit/blob/master/LICENSE) license.
+Licensed under the [MIT](https://github.com/MASSHUU12/too-long-line-limit/blob/main/LICENSE) license.
