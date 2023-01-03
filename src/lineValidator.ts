@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
-import { errLongLine, warningLongLine } from "./constants/messages";
 import { validateLine } from "./helpers/validateLine";
+
 /**
  * Performs validation on each line of the file
  *
@@ -21,7 +21,6 @@ export const lineValidator = (
     if (diag === undefined) {
       continue;
     }
-
     diagArray.push(diag);
   }
 
