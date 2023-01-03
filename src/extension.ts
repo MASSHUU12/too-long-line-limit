@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { downloadConfiguration } from "./helpers/downloadConfiguration";
 import { lineValidator } from "./lineValidator";
 
 // This method is called when extension is activated for the first time
@@ -15,7 +16,12 @@ export function activate(context: vscode.ExtensionContext) {
     if (!e) {
       return;
     }
+
+    // Run line validation
     lineValidator(e, DIAGNOSTIC_COLLECTION);
+
+    // Download new configuration, when configuration changed
+    downloadConfiguration();
   });
 
   // Listen for document changes
@@ -36,4 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // This method is called when extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+  // Remove rulers
+  vscode.workspace.getConfiguration("editor").update("rulers", undefined, true);
+}

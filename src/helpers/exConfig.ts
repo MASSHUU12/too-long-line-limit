@@ -11,11 +11,9 @@ export const exConfig = {
    * @return {*}  {number}
    */
   softLimit: (): number => {
-    const config = vscode.workspace
-      .getConfiguration(exName)
-      .get("softLimit") as string;
+    const config = vscode.workspace.getConfiguration(exName).get("softLimit");
 
-    return parseInt(config ? config : "80");
+    return parseInt(config === undefined ? "80" : (config as string));
   },
   /**
    * Hard limit of line length
@@ -23,10 +21,8 @@ export const exConfig = {
    * @return {*}  {number}
    */
   hardLimit: (): number => {
-    const config = vscode.workspace
-      .getConfiguration(exName)
-      .get("hardLimit") as string;
+    const config = vscode.workspace.getConfiguration(exName).get("hardLimit");
 
-    return parseInt(config ? config : "120");
+    return parseInt(config === undefined ? "120" : (config as string));
   },
 };

@@ -34,6 +34,21 @@
           "markdownDescription": "This is a hard limit, exceeding which significantly affects the readability of the code.\n\nExceeding this limit results in the display of an error.\n\n*This limit should not be much higher than the `#too-long-line-limit.softLimit#`.*"
         }
       }
+    },
+    "configurationDefaults": {
+      "editor.rulers": [
+        80,
+        120
+      ],
+      "[markdown]": {
+        "editor.rulers": []
+      },
+      "[jsonc]": {
+        "editor.rulers": []
+      },
+      "[json]": {
+        "editor.rulers": []
+      }
     }
   },
   "scripts": {

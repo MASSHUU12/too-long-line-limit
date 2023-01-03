@@ -6,7 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
--
+### Added
+
+- Display rulers
+- Rulers are tied to soft and hard line length limit
+
+### Changed
+
+- Improved way of downloading settings from VS Code
 
 ## 1.0.0 - 2023-01-03
 
