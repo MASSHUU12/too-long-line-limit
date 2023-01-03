@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { errLongLine, warningLongLine } from "./constants/messages";
+import { validateLine } from "./helpers/validateLine";
 /**
  * Performs validation on each line of the file
  *
@@ -7,48 +8,23 @@ import { errLongLine, warningLongLine } from "./constants/messages";
  * @return {*} void
  */
 export const lineValidator = (
-  e: vscode.TextDocumentChangeEvent,
+  e: vscode.TextDocumentChangeEvent | vscode.TextEditor,
   diagCollection: vscode.DiagnosticCollection
 ): void => {
   // Array for diagnostic elements
   let diagArray = new Array<vscode.Diagnostic>();
-  let diagNum = -1;
-
-  const editor = vscode.window.activeTextEditor;
-
-  if (!editor || !vscode.workspace.textDocuments.includes(editor!.document)) {
-    // No open text editor
-    diagCollection.clear();
-    return;
-  }
 
   // Loop through all lines in document
   for (let i = 0; i < e.document.lineCount; i++) {
-    // Get length of line
-    const line = e.document.lineAt(i);
-    const lineLen = line.text.length;
+    const diag = validateLine(e.document.lineAt(i));
 
-    // Check if line is too long, if not, continue
-    if (lineLen > 80 && lineLen <= 120) {
-      diagNum = 1;
-    } else if (lineLen > 120) {
-      diagNum = 0;
-    } else {
+    if (diag === undefined) {
       continue;
     }
 
-    // Create error Diagnostic
-    const diagnostic = new vscode.Diagnostic(
-      line.range,
-      diagNum === 0 ? errLongLine : warningLongLine,
-      diagNum === 0
-        ? vscode.DiagnosticSeverity.Error
-        : vscode.DiagnosticSeverity.Warning
-    );
-
-    diagArray.push(diagnostic);
+    diagArray.push(diag);
   }
 
   // Display problems
-  diagCollection.set(editor.document.uri, diagArray);
+  diagCollection.set(vscode.window.activeTextEditor!.document.uri, diagArray);
 };
