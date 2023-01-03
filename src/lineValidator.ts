@@ -29,9 +29,9 @@ export const lineValidator = (
     const lineLen = line.text.length;
 
     // Check if line is too long, if not, continue
-    if (lineLen >= 80 && lineLen < 120) {
+    if (lineLen > 80 && lineLen <= 120) {
       diagNum = 1;
-    } else if (lineLen >= 120) {
+    } else if (lineLen > 120) {
       diagNum = 0;
     } else {
       continue;

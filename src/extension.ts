@@ -22,6 +22,11 @@ export function activate(context: vscode.ExtensionContext) {
     lineValidator(e, DIAGNOSTIC_COLLECTION)
   );
 
+  // Listen if file is closed
+  vscode.workspace.onDidCloseTextDocument((e: vscode.TextDocument) => {
+    DIAGNOSTIC_COLLECTION.delete(e.uri);
+  });
+
   context.subscriptions.push(disposable);
 }
 
