@@ -30,7 +30,6 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [],
     "configuration": {
       "title": "Too Long - line limit",
       "properties": {
@@ -52,6 +51,29 @@
           "type": "boolean",
           "default": true,
           "markdownDescription": "Used to determine whether rulers should be visible.\n\nTheir position depends on the settings `#too-long-line-limit.softLimit#` and `#too-long-line-limit.hardLimit#`."
+        },
+        "too-long-line-limit.disabledIn": {
+          "type": "array",
+          "default": [
+            "cmake",
+            "dockerfile",
+            "dotenv",
+            "editorconfig",
+            "gitignore",
+            "html",
+            "ini",
+            "json",
+            "jsonc",
+            "log",
+            "makefile",
+            "markdown",
+            "plaintext",
+            "properties",
+            "yaml",
+            "toml",
+            "svg"
+          ],
+          "markdownDescription": "Specifies which languages should not be checked for line length.\n\n*This setting also disables rulers in these languages.*"
         }
       }
     },
@@ -59,16 +81,7 @@
       "editor.rulers": [
         80,
         120
-      ],
-      "[markdown]": {
-        "editor.rulers": []
-      },
-      "[jsonc]": {
-        "editor.rulers": []
-      },
-      "[json]": {
-        "editor.rulers": []
-      }
+      ]
     }
   },
   "scripts": {

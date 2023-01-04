@@ -29,6 +29,7 @@ Below you can see the extension in action.
 * `too-long-line.limit.rulersEnabled`: Used to determine whether rulers should be visible.
 * `too-long-line-limit.softLimit`: Limit of the number of characters, after which a warning will be displayed.
 * `too-long-line-limit.hardLimit`: Limit of the number of characters, after which a error will be displayed.
+* `too-long-line-limit.disabledIn`: Specifies which languages should not be checked for line length.
 
 ## Release Notes
 

@@ -1,18 +1,25 @@
 import * as vscode from "vscode";
+import { exConfig } from "./helpers/exConfig";
 import { validateLine } from "./helpers/validateLine";
 
 /**
- * Performs validation on each line of the file
+ * Performs validation on file
  *
  * @param {vscode.TextDocumentChangeEvent} e
  * @return {*} void
  */
-export const lineValidator = (
+export const fileValidator = (
   e: vscode.TextDocumentChangeEvent | vscode.TextEditor,
   diagCollection: vscode.DiagnosticCollection
 ): void => {
   // Array for diagnostic elements
   let diagArray = new Array<vscode.Diagnostic>();
+
+  // If document language is in disabled list, skip validation
+  if (exConfig.disabledIn().includes(e.document.languageId)) {
+    diagCollection.has(e.document.uri) && diagCollection.delete(e.document.uri);
+    return;
+  }
 
   // Loop through all lines in document
   for (let i = 0; i < e.document.lineCount; i++) {

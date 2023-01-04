@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { downloadConfiguration } from "./helpers/downloadConfiguration";
-import { lineValidator } from "./lineValidator";
+import { fileValidator } from "./fileValidator";
 
 // This method is called when extension is activated for the first time
 export function activate(context: vscode.ExtensionContext) {
@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     // Run line validation
-    lineValidator(e, DIAGNOSTIC_COLLECTION);
+    fileValidator(e, DIAGNOSTIC_COLLECTION);
 
     // Download new configuration, when configuration changed
     downloadConfiguration();
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
       DIAGNOSTIC_COLLECTION.delete(e.document.uri);
       return;
     }
-    lineValidator(e, DIAGNOSTIC_COLLECTION);
+    fileValidator(e, DIAGNOSTIC_COLLECTION);
   });
 
   // Listen if file is closed

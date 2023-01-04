@@ -8,13 +8,14 @@ import { exConfig } from "./exConfig";
  */
 export const downloadConfiguration = (): void => {
   const editorConf = vscode.workspace.getConfiguration("editor");
+  const editorRulers = editorConf.get("rulers") as Array<number>;
 
   // Check if rulers should be enabled
   if (exConfig.rulersEnabled()) {
     // Check if limits have changed
     if (
-      editorConf.get("rulers") !==
-      `[${exConfig.softLimit()}, ${exConfig.hardLimit()}]`
+      editorRulers[0] !== exConfig.softLimit() ||
+      editorRulers[1] !== exConfig.hardLimit()
     ) {
       // Update rulers based on new settings
       editorConf.update(
@@ -23,7 +24,7 @@ export const downloadConfiguration = (): void => {
         true
       );
     }
-  } else {
+  } else if (editorConf.get("rulers") !== "[]") {
     // Remove rulers
     editorConf.update("rulers", [], true);
   }
