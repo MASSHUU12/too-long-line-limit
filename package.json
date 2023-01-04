@@ -77,35 +77,35 @@
         },
         "too-long-line-limit.softLimitSeverity": {
           "type": "string",
-          "default": "Warning",
+          "default": "1",
           "enum": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "enumDescriptions": [
             "Error",
             "Warning",
             "Information",
             "Hint"
-          ],
-          "enumDescriptions": [
-            "Exceeding this limit will be marked as an error",
-            "Exceeding this limit will be marked as a warning",
-            "Exceeding this limit will be marked as an information",
-            "Exceeding this limit will be marked as a hint"
           ],
           "description": "Used to specify how exceeding the limit is to be announced."
         },
         "too-long-line-limit.hardLimitSeverity": {
           "type": "string",
-          "default": "Error",
+          "default": "0",
           "enum": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "enumDescriptions": [
             "Error",
             "Warning",
             "Information",
             "Hint"
-          ],
-          "enumDescriptions": [
-            "Exceeding this limit will be marked as an error",
-            "Exceeding this limit will be marked as a warning",
-            "Exceeding this limit will be marked as an information",
-            "Exceeding this limit will be marked as a hint"
           ],
           "description": "Used to specify how exceeding the limit is to be announced."
         }

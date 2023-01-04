@@ -22,10 +22,10 @@ export const validateLine = (
 
   if (len > exConfig.limit("soft") && len <= exConfig.limit("hard")) {
     // Soft limit
-    severity = 1;
+    severity = exConfig.severity("soft");
   } else if (len > exConfig.limit("hard")) {
     // Hard limit
-    severity = 0;
+    severity = exConfig.severity("hard");
   } else {
     // If something goes wrong, return
     return undefined;
@@ -35,8 +35,6 @@ export const validateLine = (
   return new vscode.Diagnostic(
     line.range,
     severity === 0 ? errLongLine : warningLongLine,
-    severity === 0
-      ? vscode.DiagnosticSeverity.Error
-      : vscode.DiagnosticSeverity.Warning
+    severity
   );
 };
