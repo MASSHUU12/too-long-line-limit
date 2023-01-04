@@ -2,6 +2,8 @@
 
 Create clean and readable code in Visual Studio Code.
 
+This extension encourages you to write short lines of code, notifying you when you exceed the limit.
+
 Reasons why a line length limit is needed:
 
 - clean, readable code,
@@ -12,8 +14,6 @@ Reasons why a line length limit is needed:
 - less eye movement, harder to get lost in code
 
 ## Features
-
-The extension encourages you to write short lines of code, notifying you when you exceed the limit.
 
 Two limits are built in:
 
@@ -30,6 +30,8 @@ Below you can see the extension in action.
 * `too-long-line-limit.softLimit`: Limit of the number of characters, after which a warning will be displayed.
 * `too-long-line-limit.hardLimit`: Limit of the number of characters, after which a error will be displayed.
 * `too-long-line-limit.disabledIn`: Specifies which languages should not be checked for line length.
+* `too-long-line-limit.softLimitSeverity`: Used to specify how exceeding the limit is to be announced.
+* `too-long-line-limit.hardLimitSeverity`: Used to specify how exceeding the limit is to be announced.
 
 ## Release Notes
 

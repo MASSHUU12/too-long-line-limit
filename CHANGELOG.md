@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Settings to change how exceeding the limit should be marked
+
+### Changed
+
 - Updated README to reflect the new changes
 
 ## 1.2.0 - 2023-01-04
