@@ -2,25 +2,21 @@ import * as vscode from "vscode";
 import { exName } from "../constants/constants";
 
 /**
- * Soft limit of line length
+ * Get soft or hard limit
  *
+ * @param {("soft" | "hard")} whichLimit
  * @return {*}  {number}
  */
-const softLimit = (): number => {
-  const config = vscode.workspace.getConfiguration(exName).get("softLimit");
+const limit = (whichLimit: "soft" | "hard"): number => {
+  const config = vscode.workspace
+    .getConfiguration(exName)
+    .get(whichLimit + "Limit");
 
-  return parseInt(config === undefined ? "80" : (config as string));
-};
+  if (!config) {
+    return whichLimit === "soft" ? 80 : 120;
+  }
 
-/**
- * Hard limit of line length
- *
- * @return {*}  {number}
- */
-const hardLimit = (): number => {
-  const config = vscode.workspace.getConfiguration(exName).get("hardLimit");
-
-  return parseInt(config === undefined ? "120" : (config as string));
+  return parseInt(config as string);
 };
 
 /**
@@ -52,8 +48,7 @@ const disabledIn = (): string[] => {
  * Access to extension configuration
  */
 export const exConfig = {
-  softLimit: softLimit,
-  hardLimit: hardLimit,
+  limit: limit,
   rulersEnabled: rulersEnabled,
   disabledIn: disabledIn,
 };

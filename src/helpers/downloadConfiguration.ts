@@ -14,13 +14,13 @@ export const downloadConfiguration = (): void => {
   if (exConfig.rulersEnabled()) {
     // Check if limits have changed
     if (
-      editorRulers[0] !== exConfig.softLimit() ||
-      editorRulers[1] !== exConfig.hardLimit()
+      editorRulers[0] !== exConfig.limit("soft") ||
+      editorRulers[1] !== exConfig.limit("hard")
     ) {
       // Update rulers based on new settings
       editorConf.update(
         "rulers",
-        [exConfig.softLimit(), exConfig.hardLimit()],
+        [exConfig.limit("soft"), exConfig.limit("hard")],
         true
       );
     }

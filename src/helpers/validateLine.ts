@@ -16,14 +16,14 @@ export const validateLine = (
   let severity = -1;
 
   // If the line length is within an acceptable range, return
-  if (len < exConfig.softLimit()) {
+  if (len < exConfig.limit("soft")) {
     return undefined;
   }
 
-  if (len > exConfig.softLimit() && len <= exConfig.hardLimit()) {
+  if (len > exConfig.limit("soft") && len <= exConfig.limit("hard")) {
     // Soft limit
     severity = 1;
-  } else if (len > exConfig.hardLimit()) {
+  } else if (len > exConfig.limit("hard")) {
     // Hard limit
     severity = 0;
   } else {
