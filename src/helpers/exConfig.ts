@@ -1,4 +1,5 @@
-import { VS_CONFIG } from "../constants/constants";
+import { workspace } from "vscode";
+import { exName } from "../constants/constants";
 import { Limit } from "../types/types";
 
 /**
@@ -8,7 +9,7 @@ import { Limit } from "../types/types";
  * @return {*}  {number}
  */
 const limit = (whichLimit: Limit): number => {
-  const config = VS_CONFIG.get(whichLimit + "Limit");
+  const config = workspace.getConfiguration(exName).get(whichLimit + "Limit");
 
   if (!config) {
     return whichLimit === "soft" ? 80 : 120;
@@ -23,7 +24,9 @@ const limit = (whichLimit: Limit): number => {
  * @return {*}  {number}
  */
 const severity = (whichLimit: Limit): number => {
-  const config = VS_CONFIG.get(whichLimit + "LimitSeverity");
+  const config = workspace
+    .getConfiguration(exName)
+    .get(whichLimit + "LimitSeverity");
 
   if (!config) {
     return whichLimit === "soft" ? 1 : 0;
@@ -37,7 +40,7 @@ const severity = (whichLimit: Limit): number => {
  * @returns {*} {boolean}
  */
 const rulersEnabled = (): boolean => {
-  return VS_CONFIG.get("rulersEnabled") as boolean;
+  return workspace.getConfiguration(exName).get("rulersEnabled") as boolean;
 };
 
 /**
@@ -46,7 +49,7 @@ const rulersEnabled = (): boolean => {
  * @return {*}  {string[]}
  */
 const disabledIn = (): string[] => {
-  const config = VS_CONFIG.get("disabledIn");
+  const config = workspace.getConfiguration(exName).get("disabledIn");
 
   if (config) {
     return config as Array<string>;
