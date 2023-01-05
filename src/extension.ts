@@ -1,10 +1,10 @@
-import * as vscode from "vscode";
+import { ExtensionContext, languages, window, workspace } from "vscode";
 import { downloadConfiguration } from "./helpers/downloadConfiguration";
 import { fileValidator } from "./fileValidator";
 
 // This method is called when extension is activated for the first time
-export function activate(context: vscode.ExtensionContext) {
-  const DIAGNOSTIC_COLLECTION = vscode.languages.createDiagnosticCollection(
+export function activate(context: ExtensionContext) {
+  const DIAGNOSTIC_COLLECTION = languages.createDiagnosticCollection(
     "too-long-line-limit"
   );
 
@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
   console.log('Extension "Too Long - line limit" is now active.');
 
   // Listen for document focus changes
-  vscode.window.onDidChangeActiveTextEditor((e) => {
+  window.onDidChangeActiveTextEditor((e) => {
     if (!e) {
       return;
     }
@@ -25,8 +25,8 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   // Listen for document changes
-  vscode.workspace.onDidChangeTextDocument((e) => {
-    if (!vscode.window.activeTextEditor) {
+  workspace.onDidChangeTextDocument((e) => {
+    if (!window.activeTextEditor) {
       // No open text editor
       DIAGNOSTIC_COLLECTION.delete(e.document.uri);
       return;
@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   // Listen if file is closed
-  vscode.workspace.onDidCloseTextDocument((e) =>
+  workspace.onDidCloseTextDocument((e) =>
     // Delete diagnostic for this file
     DIAGNOSTIC_COLLECTION.delete(e.uri)
   );
@@ -44,5 +44,5 @@ export function activate(context: vscode.ExtensionContext) {
 // This method is called when extension is deactivated
 export function deactivate() {
   // Remove rulers
-  vscode.workspace.getConfiguration("editor").update("rulers", [], true);
+  workspace.getConfiguration("editor").update("rulers", [], true);
 }

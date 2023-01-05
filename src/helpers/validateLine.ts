@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+import { TextLine, Diagnostic } from "vscode";
 import { errLongLine, warningLongLine } from "../constants/messages";
 import { exConfig } from "./exConfig";
 
@@ -6,12 +6,10 @@ import { exConfig } from "./exConfig";
  * Checks the length of the specified line,
  * if it exceeds the set standards it returns Diagnostic
  *
- * @param {vscode.TextLine} line
- * @return {*}  {(vscode.Diagnostic | undefined)}
+ * @param {TextLine} line
+ * @return {*}  {(Diagnostic | undefined)}
  */
-export const validateLine = (
-  line: vscode.TextLine
-): vscode.Diagnostic | undefined => {
+export const validateLine = (line: TextLine): Diagnostic | undefined => {
   const len = line.text.length;
   let severity = -1;
 
@@ -32,7 +30,7 @@ export const validateLine = (
   }
 
   // Create Diagnostic
-  return new vscode.Diagnostic(
+  return new Diagnostic(
     line.range,
     severity === 0 ? errLongLine : warningLongLine,
     severity

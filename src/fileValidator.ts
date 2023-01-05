@@ -1,19 +1,25 @@
-import * as vscode from "vscode";
+import {
+  TextDocumentChangeEvent,
+  TextEditor,
+  DiagnosticCollection,
+  Diagnostic,
+  window,
+} from "vscode";
 import { exConfig } from "./helpers/exConfig";
 import { validateLine } from "./helpers/validateLine";
 
 /**
  * Performs validation on file
  *
- * @param {vscode.TextDocumentChangeEvent} e
+ * @param {TextDocumentChangeEvent} e
  * @return {*} void
  */
 export const fileValidator = (
-  e: vscode.TextDocumentChangeEvent | vscode.TextEditor,
-  diagCollection: vscode.DiagnosticCollection
+  e: TextDocumentChangeEvent | TextEditor,
+  diagCollection: DiagnosticCollection
 ): void => {
   // Array for diagnostic elements
-  let diagArray = new Array<vscode.Diagnostic>();
+  let diagArray = new Array<Diagnostic>();
 
   // If document language is in disabled list, skip validation
   if (exConfig.disabledIn().includes(e.document.languageId)) {
@@ -32,5 +38,5 @@ export const fileValidator = (
   }
 
   // Display problems
-  diagCollection.set(vscode.window.activeTextEditor!.document.uri, diagArray);
+  diagCollection.set(window.activeTextEditor!.document.uri, diagArray);
 };

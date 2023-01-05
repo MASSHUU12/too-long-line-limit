@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+import { workspace } from "vscode";
 import { exConfig } from "./exConfig";
 
 /**
@@ -7,7 +7,7 @@ import { exConfig } from "./exConfig";
  * @returns {*} void
  */
 export const downloadConfiguration = (): void => {
-  const editorConf = vscode.workspace.getConfiguration("editor");
+  const editorConf = workspace.getConfiguration("editor");
   const editorRulers = editorConf.get("rulers") as Array<number>;
 
   // Check if rulers should be enabled
