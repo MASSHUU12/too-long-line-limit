@@ -5,7 +5,7 @@ import {
   Diagnostic,
   window,
 } from "vscode";
-import { exConfig } from "./helpers/exConfig";
+import { config } from "./helpers/config";
 import { validateLine } from "./helpers/validateLine";
 
 /**
@@ -22,7 +22,7 @@ export const fileValidator = (
   let diagArray = new Array<Diagnostic>();
 
   // If document language is in disabled list, skip validation
-  if (exConfig.disabledIn().includes(e.document.languageId)) {
+  if (config.disabledIn().includes(e.document.languageId)) {
     diagCollection.has(e.document.uri) && diagCollection.delete(e.document.uri);
     return;
   }

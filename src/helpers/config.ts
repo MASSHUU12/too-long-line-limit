@@ -60,7 +60,7 @@ const disabledIn = (): string[] => {
 /**
  * Access to extension configuration
  */
-export const exConfig = {
+export const config = {
   limit: limit,
   severity: severity,
   rulersEnabled: rulersEnabled,

@@ -1,6 +1,6 @@
 import { TextLine, Diagnostic } from "vscode";
 import { errLongLine, warningLongLine } from "../constants/messages";
-import { exConfig } from "./exConfig";
+import { config } from "./config";
 
 /**
  * Checks the length of the specified line,
@@ -14,16 +14,16 @@ export const validateLine = (line: TextLine): Diagnostic | undefined => {
   let severity = -1;
 
   // If the line length is within an acceptable range, return
-  if (len < exConfig.limit("soft")) {
+  if (len < config.limit("soft")) {
     return undefined;
   }
 
-  if (len > exConfig.limit("soft") && len <= exConfig.limit("hard")) {
+  if (len > config.limit("soft") && len <= config.limit("hard")) {
     // Soft limit
-    severity = exConfig.severity("soft");
-  } else if (len > exConfig.limit("hard")) {
+    severity = config.severity("soft");
+  } else if (len > config.limit("hard")) {
     // Hard limit
-    severity = exConfig.severity("hard");
+    severity = config.severity("hard");
   } else {
     // If something goes wrong, return
     return undefined;
