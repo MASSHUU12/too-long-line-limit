@@ -12,6 +12,7 @@ import { validateLine } from "./helpers/validateLine";
  * Performs validation on file
  *
  * @param {TextDocumentChangeEvent} e
+ * @param diagCollection
  * @return {*} void
  */
 export const fileValidator = (
