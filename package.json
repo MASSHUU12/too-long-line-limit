@@ -55,6 +55,9 @@
         "too-long-line-limit.disabledIn": {
           "type": "array",
           "default": [
+            "compose",
+            "blade",
+            "svelte",
             "cmake",
             "dockerfile",
             "dotenv",
