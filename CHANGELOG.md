@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added 3 new file types that are ignored by extension by default (compose, blade, svelte)
 - Updated dependencies
 
+### Fixed
+
+- The way of reporting the location of the problem has been improved. Previously the first letter of the line where the problem was marked, from now on the last letter will be marked, which makes more sense
+
 ## 1.3.0 - 2023-01-05
 
 ### Added

@@ -1,4 +1,4 @@
-import { TextLine, Diagnostic } from "vscode";
+import { TextLine, Diagnostic, Range } from "vscode";
 import { errLongLine, warningLongLine } from "../constants/messages";
 import { config } from "./config";
 
@@ -31,7 +31,7 @@ export const validateLine = (line: TextLine): Diagnostic | undefined => {
 
   // Create Diagnostic
   return new Diagnostic(
-    line.range,
+    new Range(line.range.end, line.range.end),
     severity === 0 ? errLongLine : warningLongLine,
     severity
   );
