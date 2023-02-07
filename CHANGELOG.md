@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- Added 3 new file types that are ignored by extension by default (compose, blade, svelte).
+- Added 3 new file types that are ignored by extension by default (compose, blade, svelte)
+- Updated dependencies
 
 ## 1.3.0 - 2023-01-05
 
