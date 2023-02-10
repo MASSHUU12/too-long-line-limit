@@ -22,10 +22,18 @@ export const fileValidator = (
   // Array for diagnostic elements
   let diagArray = new Array<Diagnostic>();
 
-  // If document language is in disabled list, skip validation
-  if (config.disabledIn().includes(e.document.languageId)) {
-    diagCollection.has(e.document.uri) && diagCollection.delete(e.document.uri);
-    return;
+  // If document language is not in enabledIn list, skip validation
+  if (config.enabledIn().length > 0) {
+    if (!config.enabledIn().includes(e.document.languageId)) {
+      return;
+    }
+  } else {
+    // If document language is in disabled list, skip validation
+    if (config.disabledIn().includes(e.document.languageId)) {
+      diagCollection.has(e.document.uri)
+      && diagCollection.delete(e.document.uri);
+      return;
+    }
   }
 
   // Loop through all lines in document

@@ -57,6 +57,15 @@ const disabledIn = (): string[] => {
   return [];
 };
 
+const enabledIn = (): string[] => {
+  const config = workspace.getConfiguration(exName).get("enabledIn");
+
+  if (config) {
+    return config as Array<string>;
+  }
+  return [];
+};
+
 /**
  * Access to extension configuration
  */
@@ -65,4 +74,5 @@ export const config = {
   severity: severity,
   rulersEnabled: rulersEnabled,
   disabledIn: disabledIn,
+  enabledIn: enabledIn,
 };
