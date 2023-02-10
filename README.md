@@ -30,6 +30,7 @@ Below you can see the extension in action.
 * `too-long-line-limit.softLimit`: Limit of the number of characters, after which a warning will be displayed.
 * `too-long-line-limit.hardLimit`: Limit of the number of characters, after which a error will be displayed.
 * `too-long-line-limit.disabledIn`: Specifies which languages should not be checked for line length.
+* `too-long-line-limit.enabledIn`: Specifies which languages should be checked for line length.
 * `too-long-line-limit.softLimitSeverity`: Used to specify how exceeding the limit is to be announced.
 * `too-long-line-limit.hardLimitSeverity`: Used to specify how exceeding the limit is to be announced.
 
