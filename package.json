@@ -75,6 +75,11 @@
           ],
           "markdownDescription": "Specifies which languages should not be checked for line length.\n\n*This setting also disables rulers in these languages.*"
         },
+        "too-long-line-limit.enabledIn": {
+          "type": "array",
+          "default": [],
+          "markdownDescription": "Specifies which languages should be checked for line length.\n\n*This setting override and disable `#too-long-line-limit.disabledIn#` if not empty."
+        },
         "too-long-line-limit.softLimitSeverity": {
           "type": "string",
           "default": "1",
