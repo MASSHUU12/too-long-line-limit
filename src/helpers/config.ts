@@ -57,6 +57,11 @@ const disabledIn = (): string[] => {
   return [];
 };
 
+/**
+ * In which languages the check is to be enabled
+ *
+ * @return {*}  {string[]}
+ */
 const enabledIn = (): string[] => {
   const config = workspace.getConfiguration(exName).get("enabledIn");
 

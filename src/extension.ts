@@ -1,4 +1,12 @@
-import { ExtensionContext, languages, window, workspace } from "vscode";
+import {
+  ExtensionContext,
+  languages,
+  TextDocument,
+  TextDocumentChangeEvent,
+  TextEditor,
+  window,
+  workspace,
+} from "vscode";
 import { downloadConfiguration } from "./helpers/downloadConfiguration";
 import { fileValidator } from "./fileValidator";
 
@@ -12,20 +20,20 @@ export function activate(context: ExtensionContext) {
   console.log('Extension "Too Long - line limit" is now active.');
 
   // Listen for document focus changes
-  window.onDidChangeActiveTextEditor((e) => {
-    if (!e) {
+  window.onDidChangeActiveTextEditor((editor: TextEditor | undefined) => {
+    if (!editor) {
       return;
     }
 
     // Run line validation
-    fileValidator(e, DIAGNOSTIC_COLLECTION);
+    fileValidator(editor, DIAGNOSTIC_COLLECTION);
 
     // Download new configuration, when configuration changed
     downloadConfiguration();
   });
 
   // Listen for document changes
-  workspace.onDidChangeTextDocument((e) => {
+  workspace.onDidChangeTextDocument((e: TextDocumentChangeEvent) => {
     if (!window.activeTextEditor) {
       // No open text editor
       DIAGNOSTIC_COLLECTION.delete(e.document.uri);
@@ -35,9 +43,9 @@ export function activate(context: ExtensionContext) {
   });
 
   // Listen if file is closed
-  workspace.onDidCloseTextDocument((e) =>
+  workspace.onDidCloseTextDocument((document: TextDocument) =>
     // Delete diagnostic for this file
-    DIAGNOSTIC_COLLECTION.delete(e.uri)
+    DIAGNOSTIC_COLLECTION.delete(document.uri)
   );
 }
 
